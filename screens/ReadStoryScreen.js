@@ -31,10 +31,10 @@ export default class ReadStoryScreen extends React.Component {
       var stories = db.collection("stories")
         .get().then((querySnapshot)=> {
           querySnapshot.forEach((doc)=> {
-              // doc.data() is never undefined for query doc snapshots
+              // doc.data() nuca esta indefinida para las consultas de doc instantáneas
               
               allStories.push(doc.data())
-              console.log('this are the stories',allStories)
+              console.log('estas son las historias',allStories)
           })
           this.setState({allStories})
         })
@@ -46,16 +46,16 @@ export default class ReadStoryScreen extends React.Component {
 
 
   SearchFilterFunction(text) {
-    //passing the inserted text in textinput
+    //pasando el texto insertado en textinput
     const newData = this.state.allStories.filter((item)=> {
-      //applying filter for the inserted text in search bar
+      //aplicando filtro para el texto insertado en la barra de búsqueda
       const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
     this.setState({
-      //setting the filtered newData on datasource
-      //After setting the data it will automatically re-render the view
+      //estableciendo el filtrado de newData en datasource
+      //Después de configurar los datos, volverá a renderizar automáticamente la vista
       dataSource: newData,
       search: text,
     });
@@ -67,13 +67,13 @@ export default class ReadStoryScreen extends React.Component {
            <Header 
                 backgroundColor = {'pink'}
                 centerComponent = {{
-                    text : 'Bed Time Stories',
-                    style : { color: 'white', fontSize: 20}
+                    text : 'Historias para Dormir',
+                    style : { color: 'white', fontSize: 15}
                 }}
             />
           <View styles ={{height:20,width:'100%'}}>
               <SearchBar
-              placeholder="Type Here..."
+              placeholder="Escribe aqui..."
               onChangeText={text => this.SearchFilterFunction(text)}
               onClear={text => this.SearchFilterFunction('')}
               value={this.state.search}
@@ -84,8 +84,8 @@ export default class ReadStoryScreen extends React.Component {
                 data={this.state.search === "" ?  this.state.allStories: this.state.dataSource}
                 renderItem={({ item }) => (
                   <View style={styles.itemContainer}>
-                    <Text>  Title: {item.title}</Text>
-                    <Text>  Author : {item.author}</Text>
+                    <Text>  Título: {item.title}</Text>
+                    <Text>  Autor : {item.author}</Text>
                   </View>
                 )}
                 keyExtractor={(item, index) => index.toString()}
