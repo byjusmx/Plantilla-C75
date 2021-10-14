@@ -14,14 +14,14 @@ export default class LoginScreen extends React.Component {
   showAlert(errorCode){
     switch(errorCode){
       case 'auth/too-many-requests':
-        Alert.alert('To many requests\nTry again later')
+        Alert.alert('Demasidas solicitudes/Intenta más tarde')
         this.setState({
           email:"",
           password : ""
         })
         break
       case 'auth/wrong-password':
-        Alert.alert('Enter Correct password')
+        Alert.alert('Ingresa la contraseña correcta')
         this.setState({
           password : ""
         })
@@ -31,7 +31,7 @@ export default class LoginScreen extends React.Component {
           email:"",
           password : ""
         })
-        return Alert.alert('Invalid email and password')
+        return Alert.alert('Correo y contraseña invalidos')
     }
   }
 
@@ -40,7 +40,7 @@ export default class LoginScreen extends React.Component {
       <View style={styles.container}>
 
         <View style={styles.subContainer1}>
-          <Text style={styles.title}>Bedtime Stories</Text>
+          <Text style={styles.title}>Historias para Dormir</Text>
           <Image source = { require("../assets/icon.png")} style={styles.image} />
           <TextInput
               placeholder="programmer@whitehatjr.com"
@@ -54,7 +54,7 @@ export default class LoginScreen extends React.Component {
               style={styles.textInput}
               />
           <TextInput
-              placeholder="password"
+              placeholder="constraseña"
               placeholderTextColor = "#ffff"
               onChangeText= {(passwordText)=>{
                   this.setState({
@@ -89,7 +89,7 @@ export default class LoginScreen extends React.Component {
               })
             }}
             >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Ingresar</Text>
           </TouchableOpacity>
 
         </View>
